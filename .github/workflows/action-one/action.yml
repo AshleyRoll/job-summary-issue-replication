@@ -6,16 +6,16 @@ runs:
       id: summary-one
       shell: bash
       run: |
-        echo "Writing summary..."
-        echo "# First Summary" >> $GITHUB_STEP_SUMMARY
+        echo "Writing summary... $GITHUB_STEP_SUMMARY"
+        echo "## First Action Summary" >> $GITHUB_STEP_SUMMARY
         echo "" >> $GITHUB_STEP_SUMMARY
-        echo "This is a summary from action one's first step"
+        echo "This is a summary from action one's first step" >> $GITHUB_STEP_SUMMARY
 
     - name: Second Summary
       id: summary-two
       shell: bash
       run: |
-        echo "Writing summary..."
-        echo "# Second Summary" >> $GITHUB_STEP_SUMMARY
+        echo "Writing summary... $GITHUB_STEP_SUMMARY"
+        echo "## Second Action Summary" >> $GITHUB_STEP_SUMMARY
         echo "" >> $GITHUB_STEP_SUMMARY
-        echo "This is a summary from action one's second step"
+        echo "This is a summary from action one's second step" >> $GITHUB_STEP_SUMMARY

@@ -1,18 +1,44 @@
 name: Test One
 on:
   workflow_dispatch:
+  push:
 jobs:
   run-action:
     name: Run Action
+    runs-on: ubuntu-latest
     steps:
+      - name: Checkout Code
+        uses: actions/checkout@main
+
+      - name: Initial summary
+        shell: bash
+        run: |
+          echo "Writing summary... $GITHUB_STEP_SUMMARY"
+          echo "# Testing Summaries" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "This is the intial summary from the workflow top level" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Calling local action" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
       - name: Action one test
         uses: ./.github/workflows/action-one
 
       - name: Another summary
         shell: bash
         run: |
-          echo "Writing summary..."
-          echo "# Top level Summary" >> $GITHUB_STEP_SUMMARY
+          echo "Writing summary... $GITHUB_STEP_SUMMARY"
+          echo "## Final Summary" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "This is a summary from the workflow top level"
+          echo "This is the final summary from the workflow top level" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "We should see a series of summaries above" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo " - Testing Summaries (from top level workflow)" >> $GITHUB_STEP_SUMMARY
+          echo " - First Action Summary " >> $GITHUB_STEP_SUMMARY
+          echo " - Second Action Summary" >> $GITHUB_STEP_SUMMARY
+          echo " - Final summary (this one)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "However, the First action summary is not there." >> $GITHUB_STEP_SUMMARY
+
 
