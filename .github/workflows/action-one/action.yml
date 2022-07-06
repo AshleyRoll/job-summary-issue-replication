@@ -1,0 +1,21 @@
+name: 'Action 1'
+runs:
+  using: "composite"
+  steps:
+    - name: First Summary
+      id: summary-one
+      shell: bash
+      run: |
+        echo "Writing summary..."
+        echo "# First Summary" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "This is a summary from action one's first step"
+
+    - name: Second Summary
+      id: summary-two
+      shell: bash
+      run: |
+        echo "Writing summary..."
+        echo "# Second Summary" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "This is a summary from action one's second step"
